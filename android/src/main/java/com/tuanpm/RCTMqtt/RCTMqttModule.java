@@ -4,7 +4,6 @@
 
 package com.tuanpm.RCTMqtt;
 
-import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.facebook.react.bridge.Promise;
@@ -31,7 +30,7 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     }
 
     @Override
-    public @NonNull String getName()
+    public  String getName()
     {
         return "Mqtt";
     }
@@ -49,13 +48,13 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     }
 
     @ReactMethod
-    public void connect(@NonNull final String clientRef)
+    public void connect( final String clientRef)
     {
         clients.get(clientRef).connect();
     }
 
     @ReactMethod
-    public void disconnect(@NonNull final String clientRef)
+    public void disconnect( final String clientRef)
     {
         clients.get(clientRef).disconnect();
     }
@@ -71,24 +70,24 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     }
 
     @ReactMethod
-    public void subscribe(@NonNull final String clientRef,
-                          @NonNull final String topic,
+    public void subscribe( final String clientRef,
+                           final String topic,
                           final int qos)
     {
         clients.get(clientRef).subscribe(topic, qos);
     }
 
     @ReactMethod
-    public void unsubscribe(@NonNull final String clientRef,
-                            final @NonNull String topic)
+    public void unsubscribe( final String clientRef,
+                            final  String topic)
     {
         clients.get(clientRef).unsubscribe(topic);
     }
 
     @ReactMethod
-    public void publish(@NonNull final String clientRef,
-                        @NonNull final String topic,
-                        @NonNull final String payload,
+    public void publish( final String clientRef,
+                         final String topic,
+                         final String payload,
                         final int qos,
                         final boolean retain)
     {
@@ -96,7 +95,7 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     }
 
     @ReactMethod
-    public void removeClient(@NonNull final String clientRef) {
+    public void removeClient( final String clientRef) {
         if (!clients.containsKey(clientRef))
         {
             return;
@@ -106,25 +105,25 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
     }
 
     @ReactMethod
-    public void reconnect(@NonNull final String clientRef)
+    public void reconnect( final String clientRef)
     {
         clients.get(clientRef).reconnect();
     }
     
     @ReactMethod
-    public void isConnected(@NonNull final String clientRef, Promise promise)
+    public void isConnected( final String clientRef, Promise promise)
     {
         promise.resolve(clients.get(clientRef).isConnected());
     }
 
     @ReactMethod
-    public void getTopics(@NonNull final String clientRef, Promise promise)
+    public void getTopics( final String clientRef, Promise promise)
     {
 	promise.resolve(clients.get(clientRef).getTopics());
     }
 
     @ReactMethod
-    public void isSubbed(@NonNull final String clientRef, String topic, Promise promise)
+    public void isSubbed( final String clientRef, String topic, Promise promise)
     {
 	promise.resolve(clients.get(clientRef).isSubbed(topic));
     }
@@ -134,7 +133,7 @@ public class RCTMqttModule extends ReactContextBaseJavaModule
         return UUID.randomUUID().toString();
     }
 
-    private void log(@NonNull final String message)
+    private void log( final String message)
     {
         if (!BuildConfig.DEBUG)
         {
